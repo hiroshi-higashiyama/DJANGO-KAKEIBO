@@ -1,4 +1,4 @@
-{% extends 'kakeibo/base.html' %} {% block content %}
+{% extends 'kakeibo/base.html' %} {% load humanize %} {% block content %}
 <div class="content-wrapper">
   <div class="container-fluid">
     <ol class="breadcrumb">
@@ -25,6 +25,7 @@
                 <th class="text-center">カテゴリ</th>
                 <th class="text-center">金額</th>
                 <th class="text-center">メモ</th>
+                <th class="text-center">更新・削除</th>
               </tr>
             </thead>
             <tbody>
@@ -32,8 +33,22 @@
               <tr class="odd gradeX text-center">
                 <td class="text-center" width="100">{{ kakeibo.date}}</td>
                 <td class="text-center" width="100">{{ kakeibo.category }}</td>
-                <td class="text-center" width="140">{{ kakeibo.money }}</td>
+                <td class="text-center" width="140">
+                  {{ kakeibo.money | intcomma }}
+                </td>
                 <td class="text-center" width="140">{{ kakeibo.memo }}</td>
+                <td class="text-center" width="140">
+                  <a
+                    href="{% url 'kakeibo:kakeibo_update' kakeibo.pk %}"
+                    class="btn btn-primary"
+                    >更新ページリンク</a
+                  >
+                  <a
+                    href="{% url 'kakeibo:kakeibo_delete' kakeibo.pk %}"
+                    class="btn btn-danger"
+                    >削除ベージ</a
+                  >
+                </td>
               </tr>
               {% endfor %}
             </tbody>
