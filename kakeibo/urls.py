@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import KakeiboListView, KakeiboCreateView, create_done, KakeiboUpdateView, update_done, KakeiboDeleteView, delete_done
+from .views import KakeiboListView, KakeiboCreateView, create_done, KakeiboUpdateView, update_done, KakeiboDeleteView, delete_done, show_circle_grahp
 
 app_name = 'kakeibo'
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('update_done/', update_done, name='update_done'),
     path('delete/<int:pk>/', KakeiboDeleteView.as_view(), name='kakeibo_delete'),
     path('delete_done/', delete_done, name='delete_done'),
+    path('circle/', show_circle_grahp, name='kakeibo_circle'),
 ]
